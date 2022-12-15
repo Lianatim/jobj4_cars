@@ -94,7 +94,7 @@ public class UserRepository {
         Query<User> query = session.createQuery("from User as u where u.id = :fId", User.class);
         query.setParameter("fId", id);
         session.close();
-        return Optional.of(query.uniqueResult());
+        return query.uniqueResultOptional();
     }
 
     /**
@@ -124,7 +124,7 @@ public class UserRepository {
         Query<User> query = session.createQuery("from User as u where u.login = :fLogin", User.class);
         query.setParameter("fLogin", login);
         session.close();
-        return Optional.of(query.uniqueResult());
+        return query.uniqueResultOptional();
     }
 
 }
