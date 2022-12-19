@@ -93,8 +93,9 @@ public class UserRepository {
         Session session = sf.openSession();
         Query<User> query = session.createQuery("from User as u where u.id = :fId", User.class);
         query.setParameter("fId", id);
+        Optional<User> rsl = query.uniqueResultOptional();
         session.close();
-        return query.uniqueResultOptional();
+        return rsl;
     }
 
     /**
@@ -123,8 +124,9 @@ public class UserRepository {
         Session session = sf.openSession();
         Query<User> query = session.createQuery("from User as u where u.login = :fLogin", User.class);
         query.setParameter("fLogin", login);
+        Optional<User> rsl = query.uniqueResultOptional();
         session.close();
-        return query.uniqueResultOptional();
+        return rsl;
     }
 
 }
