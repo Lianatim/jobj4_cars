@@ -10,4 +10,6 @@ public interface PostRepository {
     List<Post> findByPhoto();
     List<Post> findByModel(String key);
 
+    Post create(Post post);
+
 }

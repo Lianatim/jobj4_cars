@@ -21,11 +21,11 @@ public class Car {
     @Include
     private int id;
 
-    private int name;
+    private String name;
 
     private LocalDateTime created = LocalDateTime.now();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "engine_id", foreignKey = @ForeignKey(name = "ENGINE_ID_FK"))
     private Engine engine;
 

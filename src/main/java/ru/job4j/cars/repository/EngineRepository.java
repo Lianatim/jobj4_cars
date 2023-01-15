@@ -11,6 +11,8 @@ public interface EngineRepository {
 
     boolean delete(int engineId);
 
+    boolean update(Integer id, Engine engine);
+
     List<Engine> findAll();
 
     Optional<Engine> findById(int engineId);

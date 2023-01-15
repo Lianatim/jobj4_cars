@@ -12,10 +12,10 @@ import java.util.Optional;
 @AllArgsConstructor
 public class SqlCarRepository implements CarRepository {
 
-    private static final String UPDATE = "UPDATE Car SET name = :fName, created = :fCreated WHERE id = :fId";
-    private static final String DELETE = "DELETE FROM Car WHERE id = :fId";
-    private static final String FIND_ALL = "FROM Car c JOIN FETCH c.engine JOIN FETCH c.driver";
-    private static final String FIND_BY_ID = "FROM Car c JOIN FETCH c.engine JOIN FETCH c.driver WHERE c.id = :fId";
+    private static final String UPDATE = "UPDATE Car c SET name = :fName, created = :fCreated WHERE c.id = :fId";
+    private static final String DELETE = "DELETE FROM Car c WHERE c.id = :fId";
+    private static final String FIND_ALL = "FROM Car c JOIN FETCH c.engine";
+    private static final String FIND_BY_ID = "FROM Car c JOIN FETCH c.engine WHERE c.id = :fId";
     private final CrudRepository crudRepository;
 
     /**

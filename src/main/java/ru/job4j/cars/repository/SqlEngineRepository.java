@@ -11,6 +11,8 @@ import java.util.Optional;
 @Repository
 @AllArgsConstructor
 public class SqlEngineRepository implements EngineRepository {
+
+    private static final String UPDATE = "UPDATE Engine SET name = :fName WHERE id = :fId";
     private static final String DELETE = "DELETE FROM Engine WHERE id = :fId";
     private static final String FIND_ALL = "FROM Engine";
     private static final String FIND_BY_ID = "FROM Engine e WHERE e.id = :fId";
@@ -25,6 +27,19 @@ public class SqlEngineRepository implements EngineRepository {
     public Engine create(Engine engine) {
         crudRepository.run(session -> session.persist(engine));
         return engine;
+    }
+
+    /**
+     * Обновить в базе двигатель.
+     *
+     * @param engine двигатель.
+     */
+    @Override
+    public boolean update(Integer id, Engine engine) {
+        return crudRepository.booleanQuery(UPDATE,
+                Map.of("fName", engine.getName(),
+                        "fId", id)
+        );
     }
 
     /**

@@ -15,4 +15,5 @@ public class Engine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Include
     private int id;
+    private String name;
 }
