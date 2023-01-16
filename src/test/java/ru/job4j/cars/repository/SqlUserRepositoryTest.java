@@ -1,11 +1,9 @@
 package ru.job4j.cars.repository;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import ru.job4j.cars.model.User;
 
@@ -22,14 +20,6 @@ class SqlUserRepositoryTest {
 
     private final CrudRepository crudRepository = new SimpleCrudRepository(sf);
     private final UserRepository userRepository = new SqlUserRepository(crudRepository);
-
-    @AfterEach
-    public void wipeTable() {
-        Session session = sf.openSession();
-        session.beginTransaction();
-        session.createQuery("DELETE FROM User").executeUpdate();
-        session.getTransaction().commit();
-    }
 
     @Test
     void create() {

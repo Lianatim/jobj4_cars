@@ -1,11 +1,9 @@
 package ru.job4j.cars.repository;
-/*
-import org.hibernate.Session;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import ru.job4j.cars.model.Engine;
 
@@ -22,20 +20,6 @@ class SqlEngineRepositoryTest {
 
     private final CrudRepository crudRepository = new SimpleCrudRepository(sf);
     private final EngineRepository engineRepository = new SqlEngineRepository(crudRepository);
-
-    @AfterEach
-    public void wipeTable() {
-        try (Session session = sf.openSession()) {
-            session.beginTransaction();
-            List<Engine> result = session.createQuery("From Engine ", Engine.class).list();
-            for (Engine e : result) {
-                session.delete(e);
-            }
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @Test
     void whenCreate() {
@@ -87,5 +71,3 @@ class SqlEngineRepositoryTest {
         assertThat(rsl).isEqualTo(engine);
     }
 }
-
- */
