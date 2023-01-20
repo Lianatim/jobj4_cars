@@ -14,6 +14,7 @@ public class SqlPostRepository implements PostRepository {
     private static final String FIND_BY_LAST_DAY = "FROM Post p JOIN FETCH p.car WHERE p.created BETWEEN :fCreatedBefore AND :fCreatedAfter";
     private static final String FIND_BY_PHOTO = "FROM Post p JOIN FETCH p.car WHERE photo IS NOT NULL";
     private static final String FIND_BY_MODEL = "FROM Post p JOIN FETCH p.car WHERE p.car.name = :fName";
+    private static final String FIND_ALL = "FROM Post p JOIN FETCH p.car";
     private final CrudRepository crudRepository;
 
     @Override
@@ -40,6 +41,11 @@ public class SqlPostRepository implements PostRepository {
     public Post create(Post post) {
         crudRepository.run(session -> session.persist(post));
         return post;
+    }
+
+    @Override
+    public List<Post> findAll() {
+        return crudRepository.query(FIND_ALL, Post.class);
     }
 
 }

@@ -23,7 +23,7 @@ public class Post {
     @EqualsAndHashCode.Include
     private int id;
     private String description;
-    private LocalDateTime created;
+    private LocalDateTime created = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "auto_user_id")
@@ -46,4 +46,6 @@ public class Post {
     private Car car;
 
     private byte[] photo;
+
+    private boolean status;
 }

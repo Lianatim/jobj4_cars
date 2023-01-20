@@ -74,4 +74,30 @@ class SqlPostRepositoryTest {
         List<Post> expected = List.of(post);
         assertThat(rsl).isEqualTo(expected);
     }
+
+    @Test
+    void whenFindAll() {
+        Post postSec = new Post();
+        postSec.setDescription("Description2");
+        car = new Car();
+        Engine engine = new Engine();
+        engine.setName("Engine2");
+        engineRepository.create(engine);
+        car.setName("Car2");
+        car.setEngine(engine);
+        car.setCreated(LocalDateTime.now());
+        carRepository.create(car);
+        postSec.setCar(car);
+        postSec.setPhoto(new byte[4]);
+        User user = new User();
+        user.setLogin("Login5");
+        user.setPassword("Password5");
+        postSec.setUser(user);
+        postSec.setCreated(LocalDateTime.now());
+        userRepository.create(user);
+        postRepository.create(postSec);
+        List<Post> rsl = postRepository.findAll();
+        List<Post> expected = List.of(post, postSec);
+        assertThat(rsl).isEqualTo(expected);
+    }
 }

@@ -12,7 +12,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class SqlCarRepository implements CarRepository {
 
-    private static final String UPDATE = "UPDATE Car c SET name = :fName, created = :fCreated WHERE c.id = :fId";
+    private static final String UPDATE = "UPDATE Car c SET name = :fName, created = :fCreated, transmission = :fTransmission, body = :fBody WHERE c.id = :fId";
     private static final String DELETE = "DELETE FROM Car c WHERE c.id = :fId";
     private static final String FIND_ALL = "FROM Car c JOIN FETCH c.engine";
     private static final String FIND_BY_ID = "FROM Car c JOIN FETCH c.engine WHERE c.id = :fId";
@@ -40,6 +40,8 @@ public class SqlCarRepository implements CarRepository {
         return crudRepository.booleanQuery(UPDATE,
                 Map.of("fName", car.getName(),
                         "fCreated", car.getCreated(),
+                        "fTransmission", car.getTransmission(),
+                        "fBody", car.getBody(),
                         "fId", id)
         );
     }
