@@ -1,0 +1,1 @@
+INSERT INTO transmission (name) VALUES ('Механическая'), ('Автоматическая'), ('Роботизированная');

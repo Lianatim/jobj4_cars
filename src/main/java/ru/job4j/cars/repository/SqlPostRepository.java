@@ -7,6 +7,7 @@ import ru.job4j.cars.model.Post;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
@@ -15,6 +16,7 @@ public class SqlPostRepository implements PostRepository {
     private static final String FIND_BY_PHOTO = "FROM Post p JOIN FETCH p.car WHERE photo IS NOT NULL";
     private static final String FIND_BY_MODEL = "FROM Post p JOIN FETCH p.car WHERE p.car.name = :fName";
     private static final String FIND_ALL = "FROM Post p JOIN FETCH p.car";
+    private static final String FIND_BY_ID = "FROM Post p JOIN FETCH p.car WHERE p.id = :fId";
     private final CrudRepository crudRepository;
 
     @Override
@@ -46,6 +48,14 @@ public class SqlPostRepository implements PostRepository {
     @Override
     public List<Post> findAll() {
         return crudRepository.query(FIND_ALL, Post.class);
+    }
+
+    @Override
+    public Optional<Post> findById(int postId) {
+        return crudRepository.optional(
+                FIND_BY_ID, Post.class,
+                Map.of("fId", postId)
+        );
     }
 
 }
