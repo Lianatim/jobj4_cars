@@ -2,6 +2,7 @@ package ru.job4j.cars.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.job4j.cars.dto.FileDto;
 import ru.job4j.cars.model.Post;
 import ru.job4j.cars.repository.PostRepository;
 
@@ -13,6 +14,8 @@ import java.util.Optional;
 public class SimplePostService implements PostService {
 
     private final PostRepository postRepository;
+
+    private final FileService fileService;
 
     @Override
     public List<Post> findByLastDay() {
@@ -30,8 +33,14 @@ public class SimplePostService implements PostService {
     }
 
     @Override
-    public Post create(Post post) {
+    public Post create(Post post, FileDto image) {
+        saveNewFile(post, image);
         return postRepository.create(post);
+    }
+
+    private void saveNewFile(Post post, FileDto image) {
+        var file = fileService.save(image);
+        post.setFileId(file.getId());
     }
 
     @Override

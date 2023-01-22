@@ -1,5 +1,6 @@
 package ru.job4j.cars.service;
 
+import ru.job4j.cars.dto.FileDto;
 import ru.job4j.cars.model.Post;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface PostService {
 
     List<Post> findByModel(String key);
 
-    Post create(Post post);
+    Post create(Post post, FileDto image);
 
     List<Post> findAll();
     Optional<Post> findById(int postId);

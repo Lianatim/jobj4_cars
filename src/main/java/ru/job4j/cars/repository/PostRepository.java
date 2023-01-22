@@ -16,4 +16,9 @@ public interface PostRepository {
 
     Optional<Post> findById(int postId);
 
+    List<Post> findBySold(boolean sold);
+
+    boolean setSold(int postId);
+
+    boolean setUnsold(int postId);
 }

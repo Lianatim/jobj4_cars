@@ -21,4 +21,5 @@
     <include file="scripts/012_ddl_create_body_table.sql" relativeToChangelogFile="true"/>
     <include file="scripts/013_dml_update_transmission_table.sql" relativeToChangelogFile="true"/>
     <include file="scripts/014_dml_update_body_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/015_ddl_alter_auto_post_table.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>

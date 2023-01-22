@@ -45,7 +45,7 @@ public class Post {
     @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car car;
 
-    private byte[] photo;
+    private int fileId;
 
-    private boolean status;
+    private boolean sold;
 }
