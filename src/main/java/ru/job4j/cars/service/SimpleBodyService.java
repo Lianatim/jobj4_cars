@@ -1,14 +1,14 @@
 package ru.job4j.cars.service;
 
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import ru.job4j.cars.model.Body;
 import ru.job4j.cars.repository.BodyRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+@Service
 @AllArgsConstructor
 public class SimpleBodyService implements BodyService {
 

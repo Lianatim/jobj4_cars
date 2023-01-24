@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "auto_post")
@@ -30,7 +32,7 @@ public class Post {
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name = "auto_post_id")
     private List<PriceHistory> priceHistoryList = new ArrayList<>();
 
     @ManyToMany
@@ -39,7 +41,7 @@ public class Post {
             joinColumns = {@JoinColumn(name = "auto_post_id")},
             inverseJoinColumns = {@JoinColumn(name = "auto_user_id")}
     )
-    private List<User> participates = new ArrayList<>();
+    private Set<User> participates = new HashSet<>();
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "car_id", referencedColumnName = "id")
