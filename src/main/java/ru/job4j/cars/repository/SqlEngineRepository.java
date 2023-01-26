@@ -15,7 +15,7 @@ public class SqlEngineRepository implements EngineRepository {
     private static final String UPDATE = "UPDATE Engine SET name = :fName WHERE id = :fId";
     private static final String DELETE = "DELETE FROM Engine WHERE id = :fId";
     private static final String FIND_ALL = "FROM Engine";
-    private static final String FIND_BY_ID = "FROM Engine e WHERE e.id = :fId";
+    private static final String FIND_BY_ID = "FROM Engine WHERE id = :fId";
     private final CrudRepository crudRepository;
 
     /**
@@ -43,7 +43,7 @@ public class SqlEngineRepository implements EngineRepository {
     }
 
     /**
-     * Удалить автомобиль по id.
+     * Удалить двигатель по id.
      *
      * @param engineId ID
      */
@@ -52,18 +52,18 @@ public class SqlEngineRepository implements EngineRepository {
     }
 
     /**
-     * Список всех автомобилей
+     * Список всех двигателей
      *
-     * @return список автомобилей.
+     * @return список двигателей.
      */
     public List<Engine> findAll() {
         return crudRepository.query(FIND_ALL, Engine.class);
     }
 
     /**
-     * Найти автомобиль по ID
+     * Найти двигатель по ID
      *
-     * @return автомобиль.
+     * @return двигатель.
      */
     public Optional<Engine> findById(int engineId) {
         return crudRepository.optional(
