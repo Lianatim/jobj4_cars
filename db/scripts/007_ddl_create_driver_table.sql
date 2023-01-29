@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS driver
 (
     id        SERIAL PRIMARY KEY,
     name      TEXT      NOT NULL,
-    auto_user_id INT       NOT NULL REFERENCES auto_user (id)
+    auto_user_id INT REFERENCES auto_user (id)
 );
 
 comment on table driver is 'Таблица с водителями';

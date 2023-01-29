@@ -3,6 +3,7 @@ package ru.job4j.cars.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.job4j.cars.model.Driver;
+import ru.job4j.cars.model.User;
 import ru.job4j.cars.repository.DriverRepository;
 
 import java.util.List;
@@ -38,4 +39,10 @@ public class SimpleDriverService implements DriverService {
     public Optional<Driver> findById(int driverId) {
         return driverRepository.findById(driverId);
     }
+
+    @Override
+    public Optional<Driver> findByUser(User user) {
+        return driverRepository.findByUser(user);
+    }
+
 }

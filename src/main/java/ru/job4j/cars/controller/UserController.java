@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import ru.job4j.cars.model.User;
 import ru.job4j.cars.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 import static ru.job4j.cars.util.HttpSetSession.setSession;
 
@@ -56,7 +58,7 @@ public class UserController {
         return "user/login";
     }
 
-    /*@PostMapping("/login")
+  @PostMapping("/login")
     public String login(@ModelAttribute User user, HttpServletRequest req) {
         Optional<User> userDb = userService.findUserByLoginAndPassword(
                 user.getLogin(), user.getPassword()
@@ -66,8 +68,8 @@ public class UserController {
         }
         HttpSession session = req.getSession();
         session.setAttribute("user", userDb.get());
-        return "redirect:/tasks";
-    }*/
+        return "redirect:/posts/list";
+    }
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();

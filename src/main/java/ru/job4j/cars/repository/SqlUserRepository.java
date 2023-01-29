@@ -104,4 +104,16 @@ public class SqlUserRepository implements UserRepository {
                 Map.of("fLogin", login)
         );
     }
+
+    @Override
+    public Optional<User> findUserByLoginAndPassword(String login, String password) {
+        try {
+            return crudRepository.optional(
+                    "from User as u where u.login = :fLogin AND u.password = :fPassword", User.class,
+                    Map.of("fLogin", login, "fPassword", password)
+            );
+        } catch (Exception e) {
+            return Optional.empty();
+        }
+    }
 }

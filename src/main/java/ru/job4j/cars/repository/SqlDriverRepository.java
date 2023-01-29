@@ -3,6 +3,7 @@ package ru.job4j.cars.repository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.Driver;
+import ru.job4j.cars.model.User;
 
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ public class SqlDriverRepository implements DriverRepository {
     private static final String DELETE = "DELETE FROM Driver WHERE id = :fId";
     private static final String FIND_ALL = "FROM Driver d JOIN FETCH d.user";
     private static final String FIND_BY_ID = "FROM Driver d JOIN FETCH d.user WHERE d.id = :fId";
+    private static final String FIND_BY_USER = "FROM Driver d JOIN FETCH d.user WHERE d.user = :fUser";
     private final CrudRepository crudRepository;
 
     /**
@@ -73,6 +75,14 @@ public class SqlDriverRepository implements DriverRepository {
         return crudRepository.optional(
                 FIND_BY_ID, Driver.class,
                 Map.of("fId", driverId)
+        );
+    }
+
+    @Override
+    public Optional<Driver> findByUser(User user) {
+        return crudRepository.optional(
+                FIND_BY_USER, Driver.class,
+                Map.of("fUser", user)
         );
     }
 }
