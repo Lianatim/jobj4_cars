@@ -29,7 +29,7 @@ public class Car {
     private LocalDateTime created;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "engine_id", foreignKey = @ForeignKey(name = "ENGINE_ID_FK"))
+    @JoinColumn(name = "engine_id")
     private Engine engine;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -40,10 +40,10 @@ public class Car {
     private Set<Driver> drivers = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "transmission_id", foreignKey = @ForeignKey(name = "TRANSMISSION_ID_FK"))
+    @JoinColumn(name = "transmission_id")
     private Transmission transmission;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "body_id", foreignKey = @ForeignKey(name = "BODY_ID_FK"))
+    @JoinColumn(name = "body_id")
     private Body body;
 }
