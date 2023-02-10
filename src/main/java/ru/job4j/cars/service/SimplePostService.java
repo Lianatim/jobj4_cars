@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.job4j.cars.dto.FileDto;
 import ru.job4j.cars.model.Post;
+import ru.job4j.cars.model.PriceHistory;
 import ru.job4j.cars.repository.PostRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,8 +35,9 @@ public class SimplePostService implements PostService {
     }
 
     @Override
-    public Post create(Post post, FileDto image) {
+    public Post create(Post post, FileDto image, Long newPrice) {
         saveNewFile(post, image);
+        setPrice(post, newPrice);
         return postRepository.create(post);
     }
 
@@ -51,6 +54,21 @@ public class SimplePostService implements PostService {
     @Override
     public Optional<Post> findById(int postId) {
         return postRepository.findById(postId);
+    }
+
+    private void setPrice(Post post, Long newPrice) {
+        List<PriceHistory> currentPriceHistory = post.getPriceHistoryList();
+        PriceHistory priceCar = new PriceHistory();
+        if (currentPriceHistory.isEmpty()) {
+            priceCar.setBefore(newPrice);
+            priceCar.setAfter(newPrice);
+            currentPriceHistory.add(priceCar);
+            priceCar.setCreated(LocalDateTime.now());
+        } else {
+            Long lastPrice = currentPriceHistory.get(currentPriceHistory.size() - 1).getAfter();
+            priceCar.setBefore(lastPrice);
+            priceCar.setAfter(newPrice);
+        }
     }
 
 }

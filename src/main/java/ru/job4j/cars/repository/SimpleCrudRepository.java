@@ -88,9 +88,10 @@ public class SimpleCrudRepository implements CrudRepository {
 
     @Override
     public <T> T tx(Function<Session, T> command) {
-        var session = sf.openSession();
+        Session session = null;
         Transaction tx = null;
-        try (session) {
+        try {
+            session = sf.openSession();
             tx = session.beginTransaction();
             T rsl = command.apply(session);
             tx.commit();

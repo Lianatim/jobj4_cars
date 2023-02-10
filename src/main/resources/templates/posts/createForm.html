@@ -1,0 +1,95 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<html lang="en">
+<head>
+
+    <!--  Зависимости Bootstrap-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+            integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+            crossorigin="anonymous"></script>
+
+    <title>Создание объявления</title>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<div class="container-fluid p-0">
+    <div class="container">
+        <form th:action="@{/posts/create}" method="POST" enctype="multipart/form-data">
+            <div class="col-12">
+                <label class="form-label"><b>Владелец автомобиля</b></label>
+                <input type="text" class="form-control" th:object="${driver.name}" name="driverName" id="driverId"
+                       placeholder="Введите ФИО владельца">
+            </div>
+            <div class="col-12">
+                <label><b>Описание</b></label>
+                <textarea class="form-control" th:field="*{post.description}" rows="15"
+                          placeholder="Опишите состояние автомобиля"></textarea>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <label class="form-label"><b>Модель</b></label>
+                    <input type="text" th:field="*{car.name}" th:value="${car.name}" name="name" class="form-control"
+                           placeholder="Введите модель автомобиля">
+                </div>
+                <div class="col-4">
+                    <label for="price" class="form-label"><b>Цена</b></label>
+                    <input type="text" class="form-control" id="price" name="price"
+                           placeholder="Введите стоимость автомобиля">
+                </div>
+                <div class="col-4">
+                    <label for="date" class="form-label"><b>Год выпуска</b></label>
+                    <input type="text" class="form-control" id="date" name="date"
+                           placeholder="Введите год выпуска автомобиля">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <label for="engine.id" class="col"><b>Выберите двигатель</b></label>
+                    <select th:object="${engine}" class="form-control" id="engine.id" name="engine.id">
+                        <option th:each="engine : ${engines}" th:value="${engine.id}"
+                                th:text="${engine.name}"></option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <label for="transmission.id" class="col"><b>Выберите коробку передач</b></label>
+                    <select class="form-control" id="transmission.id" name="transmission.id">
+                        <option th:each="transmission : ${transmissions}" th:value="${transmission.id}"
+                                th:text="${transmission.name}"></option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <label for="body.id" class="col"><b>Выберите тип кузова</b></label>
+                    <select class="form-control" id="body.id" name="body.id">
+                        <option th:each="body : ${bodies}" th:value="${body.id}"
+                                th:text="${body.name}"></option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label for="formFile"><b>Фото</b></label>
+                    <input class="form-control form-control-sm w-100" type="file" id="formFile" name="file" required>
+                </div>
+            </div>
+            <br>
+            <div class="col-6">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-6"><a class="btn btn-danger w-100" th:href="@{/posts/list}">Отмена</a></div>
+                        <div class="col-6">
+                            <button class="btn btn-primary w-100" type="submit">Сохранить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

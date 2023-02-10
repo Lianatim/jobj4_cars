@@ -15,7 +15,7 @@ public class SqlPostRepository implements PostRepository {
     private static final String FIND_BY_LAST_DAY = "FROM Post p JOIN FETCH p.car WHERE p.created BETWEEN :fCreatedBefore AND :fCreatedAfter";
     private static final String FIND_BY_PHOTO = "FROM Post p JOIN FETCH p.car WHERE fileId IS NOT NULL";
     private static final String FIND_BY_MODEL = "FROM Post p JOIN FETCH p.car WHERE p.car.name = :fName";
-    private static final String FIND_ALL = "FROM Post p JOIN FETCH p.car";
+    private static final String FIND_ALL = "FROM Post p JOIN FETCH p.car JOIN FETCH p.car.engine JOIN FETCH p.car.body JOIN FETCH p.car.transmission";
     private static final String FIND_BY_ID = "FROM Post p JOIN FETCH p.car WHERE p.id = :fId";
     private static final String FIND_BY_SOLD = "FROM Post p JOIN FETCH p.car where p.sold = :fSold";
     private static final String SET_SOLD = "FROM Post p JOIN FETCH p.car SET p.sold = :fSold WHERE p.id = :pId";

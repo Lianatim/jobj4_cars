@@ -1,0 +1,26 @@
+<div th:fragment="header">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <div class="container-fluid p-0">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container">
+                    <a class="navbar-brand" th:href="@{/posts/createForm}">Auto</a>
+                    <div class="collapse navbar-collapse">
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link active" th:href="@{/posts/list}">Объявления</a>
+                            <a class="nav-item nav-link" th:href="@{/posts/createForm}">Добавить объявление</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-end">
+                        <form>
+                            <button type="submit" class="btn btn-outline-primary me-2" th:if="${user.login == 'Guest'}" th:formaction="@{|/user/loginPage|}">Log in
+                            </button>
+                            <button type="submit" class="btn btn-outline-primary me-2" th:if="${user.login != 'Guest'}" th:formaction="@{|/user/logout|}">Log out
+                            </button>
+                            <button type="submit" class="btn btn-primary" th:formaction="@{|/user/formAdd|}">Sign-up</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+</div>

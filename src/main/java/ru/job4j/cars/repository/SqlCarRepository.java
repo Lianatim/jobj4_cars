@@ -14,7 +14,7 @@ public class SqlCarRepository implements CarRepository {
 
     private static final String UPDATE = "UPDATE Car c SET name = :fName, created = :fCreated, transmission = :fTransmission, body = :fBody WHERE c.id = :fId";
     private static final String DELETE = "DELETE FROM Car c WHERE c.id = :fId";
-    private static final String FIND_ALL = "FROM Car c JOIN FETCH c.engine";
+    private static final String FIND_ALL = "FROM Car c JOIN FETCH c.engine JOIN FETCH c.body JOIN FETCH c.transmission";
     private static final String FIND_BY_ID = "FROM Car c JOIN FETCH c.engine WHERE c.id = :fId";
     private final CrudRepository crudRepository;
 
