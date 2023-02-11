@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode.Include;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,7 +26,7 @@ public class Car {
 
     private String name;
 
-    private LocalDateTime created;
+    private LocalDate created;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "engine_id")

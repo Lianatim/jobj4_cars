@@ -21,8 +21,8 @@
     <title>TODO list</title>
 </head>
 <body>
+<header th:insert="blocks/header :: header"></header>
 <div class="container pt-3">
-    <header th:insert="blocks/header :: header"></header>
     <div class="row justify-content-center">
         <div class="card text-center mt-2" style="width: 55%">
             <div class="card" style="width: 100%">
@@ -35,11 +35,6 @@
                     </div>
                     <form th:action="@{/user/login}" method="POST">
                         <input type="hidden" name="id" value="0"/>
-                        <label>Name</label>
-                        <div class="form-group row justify-content-center">
-                            <input type="name" class="form-control bg-light col-md-6" placeholder="type a name"
-                                   name="name" id="name" required>
-                        </div>
                         <label>Login</label>
                         <div class="form-group row justify-content-center">
                             <input type="text" class="form-control bg-light col-md-6" placeholder="type a login"

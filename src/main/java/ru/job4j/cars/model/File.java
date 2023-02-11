@@ -1,59 +1,24 @@
 package ru.job4j.cars.model;
 
-import java.util.Objects;
+import lombok.*;
 
+import javax.persistence.*;
+
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@NoArgsConstructor
+@RequiredArgsConstructor
+@Entity
+@Table(name = "file")
 public class File {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private int id;
-
+    @NonNull
     private String name;
-
+    @NonNull
     private String path;
-
-    public File(String name, String path) {
-        this.name = name;
-        this.path = path;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        File file = (File) o;
-        return id == file.id && Objects.equals(path, file.path);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, path);
-    }
 
 }

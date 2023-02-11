@@ -23,9 +23,10 @@
 <div class="container-fluid p-0">
     <div class="container">
         <form th:action="@{/posts/create}" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="id" th:field="*{post.id}"/>
             <div class="col-12">
                 <label class="form-label"><b>Владелец автомобиля</b></label>
-                <input type="text" class="form-control" th:object="${driver.name}" name="driverName" id="driverId"
+                <input type="text" class="form-control" th:value="${driver.name}"
                        placeholder="Введите ФИО владельца">
             </div>
             <div class="col-12">
@@ -36,7 +37,7 @@
             <div class="row">
                 <div class="col-4">
                     <label class="form-label"><b>Модель</b></label>
-                    <input type="text" th:field="*{car.name}" th:value="${car.name}" name="name" class="form-control"
+                    <input type="text"  th:value="${car.name}" name="name" class="form-control"
                            placeholder="Введите модель автомобиля">
                 </div>
                 <div class="col-4">
@@ -45,9 +46,9 @@
                            placeholder="Введите стоимость автомобиля">
                 </div>
                 <div class="col-4">
-                    <label for="date" class="form-label"><b>Год выпуска</b></label>
-                    <input type="text" class="form-control" id="date" name="date"
-                           placeholder="Введите год выпуска автомобиля">
+                    <label for="date" class="form-label"><b>Дата выпуска</b></label>
+                    <input type="date" class="form-control" id="date" name="date"
+                           placeholder="Выберите дату покупки машины">
                 </div>
             </div>
             <div class="row">
@@ -73,8 +74,8 @@
                     </select>
                 </div>
                 <div class="col-12">
-                    <label for="formFile"><b>Фото</b></label>
-                    <input class="form-control form-control-sm w-100" type="file" id="formFile" name="file" required>
+                    <label for="file"><b>Фото</b></label>
+                    <input class="form-control form-control-sm w-100" type="file" id="file" name="file" required>
                 </div>
             </div>
             <br>

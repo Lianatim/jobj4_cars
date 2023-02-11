@@ -14,7 +14,7 @@ public interface PostService {
 
     List<Post> findByModel(String key);
 
-    Post create(Post post, FileDto image);
+    Post create(Post post, FileDto image, Long newPrice);
 
     List<Post> findAll();
     Optional<Post> findById(int postId);

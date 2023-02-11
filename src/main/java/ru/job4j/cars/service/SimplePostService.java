@@ -43,7 +43,7 @@ public class SimplePostService implements PostService {
 
     private void saveNewFile(Post post, FileDto image) {
         var file = fileService.save(image);
-        post.setFileId(file.getId());
+        post.setFiles(file);
     }
 
     @Override

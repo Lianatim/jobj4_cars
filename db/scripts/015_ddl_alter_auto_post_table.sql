@@ -1,2 +1,0 @@
-ALTER TABLE auto_post DROP COLUMN photo;
-ALTER TABLE auto_post ADD COLUMN fileId INT;
